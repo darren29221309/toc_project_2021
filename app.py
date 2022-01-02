@@ -14,21 +14,21 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "state1", "state2"],
+    states=["user", "hello", "ugly"],
     transitions=[
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state1",
-            "conditions": "is_going_to_state1",
+            "dest": "hello",
+            "conditions": "is_going_to_hello",
         },
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
+            "dest": "ugly",
+            "conditions": "is_going_to_ugly",
         },
-        {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
+        {"trigger": "go_back", "source": ["hello", "ugly"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
@@ -118,3 +118,4 @@ def show_fsm():
 if __name__ == "__main__":
     port = os.environ.get("PORT", 8000)
     app.run(host="0.0.0.0", port=port, debug=True)
+    show_fsm()

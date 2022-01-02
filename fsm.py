@@ -7,30 +7,30 @@ class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
 
-    def is_going_to_state1(self, event):
+    def is_going_to_hello(self, event):
         text = event.message.text
-        return text.lower() == "go to state1"
+        return text.lower() == "你好"
 
-    def is_going_to_state2(self, event):
+    def is_going_to_ugly(self, event):
         text = event.message.text
-        return text.lower() == "go to state2"
+        return text.lower() == "我帥嗎"
 
-    def on_enter_state1(self, event):
+    def on_enter_hello(self, event):
         print("I'm entering state1")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger state1")
+        send_text_message(reply_token, "你好")
         self.go_back()
 
-    def on_exit_state1(self):
-        print("Leaving state1")
+    def on_exit_hello(self):
+        print("Leaving hello")
 
-    def on_enter_state2(self, event):
-        print("I'm entering state2")
+    def on_enter_ugly(self, event):
+        print("I'm entering ugly")
 
         reply_token = event.reply_token
-        send_text_message(reply_token, "Trigger state2")
+        send_text_message(reply_token, "醜狗")
         self.go_back()
 
-    def on_exit_state2(self):
-        print("Leaving state2")
+    def on_exit_ugly(self):
+        print("Leaving ugly")
